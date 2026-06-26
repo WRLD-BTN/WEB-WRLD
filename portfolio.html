@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="WEB-WRLD Portfolio — Our web development, graphics design, and print work." />
+  <title>Portfolio | WEB-WRLD</title>
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+
+  <style>
+    .filter-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .filter-btn {
+      background: transparent;
+      border: 1px solid var(--border-dim);
+      color: var(--text-muted);
+      padding: 8px 20px;
+      border-radius: var(--radius-sm);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-glow);
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .portfolio-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .portfolio-item:hover {
+      border-color: var(--accent-border);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 150, 220, 0.15);
+    }
+
+    .portfolio-thumb {
+      width: 100%;
+      height: 200px;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-dim);
+      position: relative;
+      overflow: hidden;
+    }
+    .portfolio-thumb::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(3, 10, 24, 0.06) 0%, rgba(3, 10, 24, 0.12) 48%, rgba(3, 10, 24, 0.62) 100%),
+        radial-gradient(circle at 50% 50%, rgba(0,200,255,0.12) 0%, transparent 70%);
+      z-index: 1;
+    }
+    .portfolio-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transform: scale(1.01);
+      transition: transform 0.4s ease, filter 0.4s ease;
+      filter: saturate(1.06) contrast(1.02);
+    }
+    .portfolio-item:hover .portfolio-thumb img {
+      transform: scale(1.06);
+      filter: saturate(1.12) contrast(1.05);
+    }
+    .portfolio-thumb-label {
+      position: absolute;
+      left: 16px;
+      bottom: 14px;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(3, 10, 24, 0.55);
+      backdrop-filter: blur(10px);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #f2fbff;
+    }
+    .portfolio-thumb-label::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 14px rgba(0, 200, 255, 0.7);
+    }
+
+    .portfolio-info { padding: 20px; }
+    .portfolio-tag {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-dim);
+      margin-bottom: 8px;
+    }
+    .portfolio-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .portfolio-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .portfolio-item[data-hidden="true"] {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="scrollBar"></div>
+  <canvas id="techCanvas"></canvas>
+
+  <nav>
+    <a href="index.html" class="logo-img"><img src="assets/logo.png" alt="WEB-WRLD" /></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="portfolio.html" class="active">Portfolio</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta">Get a Quote</a>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="mobile-menu">
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="contact.html">Contact / Get a Quote</a>
+  </div>
+
+  <div class="page-content">
+
+    <section style="padding-top:160px; padding-bottom:40px; max-width:100%;">
+      <div class="section-label">Our Work</div>
+      <h1 class="section-title" style="font-size:clamp(40px,6vw,70px);">Built by <span>WEB-WRLD</span></h1>
+      <p style="font-size:16px; color:var(--text-secondary); max-width:520px; font-weight:300; line-height:1.8; margin-bottom:40px;">
+        A selection of projects across web development, graphics design, and print. Real work, real results.
+      </p>
+
+      <!-- Filter Buttons -->
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All Work</button>
+        <button class="filter-btn" data-filter="web">Web Development</button>
+        <button class="filter-btn" data-filter="graphics">Graphics Design</button>
+        <button class="filter-btn" data-filter="print">Print &amp; Media</button>
+      </div>
+
+      <!-- Portfolio Grid -->
+      <div class="portfolio-grid stagger-parent" id="portfolioGrid">
+
+        <div class="portfolio-item reveal" data-category="web">
+          <div class="portfolio-thumb">
+            <img src="assets/portfolio-web-business-website.jpg" alt="Code on monitor during business website development" loading="lazy" />
+            <div class="portfolio-thumb-label">Client Build</div>
+          </div>
+          <div class="portfolio-info">
+            <div class="portfolio-tag">Web Development</div>
+            <div class="portfolio-title">Business Website</div>
+            <div class="portfolio-desc">Responsive 5-page website for a local services company. HTML, CSS, JavaScript.</div>
+          </div>
+        </div>
+
+        <div class="portfolio-item reveal" data-category="graphics">
+          <div class="portfolio-thumb">
+            <img src="assets/portfolio-graphics-brand-identity.jpg" alt="Design workspace with tablet and mockup screens for brand identity work" loading="lazy" />
+            <div class="portfolio-thumb-label">Identity System</div>
+          </div>
+          <div class="portfolio-info">
+            <div class="portfolio-tag">Graphics Design</div>
+            <div class="portfolio-title">Brand Identity</div>
+            <div class="portfolio-desc">Complete brand identity including logo, colour palette, and usage guidelines.</div>
+          </div>
+        </div>
+
+        <div class="portfolio-item reveal" data-category="print">
+          <div class="portfolio-thumb">
+            <img src="assets/portfolio-print-event-flyers.jpg" alt="Poster mockup styled for flyer and event print presentation" loading="lazy" />
+            <div class="portfolio-thumb-label">Campaign Print</div>
+          </div>
+          <div class="portfolio-info">
+            <div class="portfolio-tag">Print &amp; Media</div>
+            <div class="portfolio-title">Event Flyers</div>
+            <div class="portfolio-desc">Series of promotional flyers for a local event. Print-ready at 300 DPI.</div>
+          </div>
+        </div>
+
+        <div class="portfolio-item reveal" data-category="web">
+          <div class="portfolio-thumb">
+            <img src="assets/portfolio-web-ecommerce-store.jpg" alt="Modern coding workspace for e-commerce web development" loading="lazy" />
+            <div class="portfolio-thumb-label">Storefront UX</div>
+          </div>
+          <div class="portfolio-info">
+            <div class="portfolio-tag">Web Development</div>
+            <div class="portfolio-title">E-Commerce Store</div>
+            <div class="portfolio-desc">Online store with product listings, cart, and WhatsApp order integration.</div>
+          </div>
+        </div>
+
+        <div class="portfolio-item reveal" data-category="graphics">
+          <div class="portfolio-thumb">
+            <img src="assets/portfolio-graphics-social-media-kit.jpg" alt="Creative workspace with tablet and colored pencils for social media design" loading="lazy" />
+            <div class="portfolio-thumb-label">Content Pack</div>
+          </div>
+          <div class="portfolio-info">
+            <div class="portfolio-tag">Graphics Design</div>
+            <div class="portfolio-title">Social Media Kit</div>
+            <div class="portfolio-desc">Instagram and Facebook post templates for a restaurant brand.</div>
+          </div>
+        </div>
+
+        <div class="portfolio-item reveal" data-category="print">
+          <div class="portfolio-thumb">
+            <img src="assets/portfolio-print-business-cards.jpg" alt="Business card mockup arranged on a studio desk" loading="lazy" />
+            <div class="portfolio-thumb-label">Brand Collateral</div>
+          </div>
+          <div class="portfolio-info">
+            <div class="portfolio-tag">Print &amp; Media</div>
+            <div class="portfolio-title">Business Cards</div>
+            <div class="portfolio-desc">Premium double-sided business card design for a legal firm. CMYK print files.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Add More Work Placeholder -->
+      <div style="text-align:center; margin-top:60px; padding:48px; border:1px dashed var(--border-mid); border-radius:var(--radius-md);">
+        <div style="font-size:24px; color:var(--accent-dim); margin-bottom:16px;">+</div>
+        <p style="font-size:13px; color:var(--text-muted); margin-bottom:20px;">More projects being added regularly. Want to be featured here?</p>
+        <a href="contact.html" class="btn-secondary">Work With Us</a>
+      </div>
+
+    </section>
+
+    <footer>
+      <a href="index.html" class="logo-img"><img src="assets/logo.png" alt="WEB-WRLD" /></a>
+      <div class="footer-links">
+        <a href="services.html">Services</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-copy">© 2025 WEB-WRLD. All rights reserved.</div>
+    </footer>
+
+  </div>
+
+  <a href="https://wa.me/263787524998" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16 3C9.373 3 4 8.373 4 15c0 2.385.668 4.61 1.82 6.514L4 29l7.697-1.798A12.94 12.94 0 0 0 16 28c6.627 0 12-5.373 12-12S22.627 3 16 3zm6.355 16.81c-.264.742-1.543 1.418-2.108 1.467-.535.046-1.037.238-3.497-.73-2.945-1.156-4.826-4.148-4.972-4.341-.146-.193-1.19-1.583-1.19-3.022s.752-2.145 1.019-2.437c.267-.292.583-.365.777-.365l.554.011c.178.007.418-.068.654.498.264.62.893 2.173.97 2.332.077.159.128.345.026.558-.103.212-.154.344-.304.529-.15.184-.315.41-.45.55-.15.154-.305.32-.13.627.174.308.774 1.278 1.663 2.072 1.14 1.016 2.103 1.33 2.412 1.479.308.148.487.124.666-.074.179-.198.766-.893 1.015-1.2.213-.265.427-.22.72-.132.292.088 1.853.874 2.17 1.033.318.159.529.238.607.372.079.133.079.771-.185 1.513z"/>
+    </svg>
+  </a>
+
+  <script src="js/techcircle.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    /* Portfolio Filter */
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.portfolio-item').forEach(item => {
+          const show = filter === 'all' || item.dataset.category === filter;
+          item.dataset.hidden = !show;
+          item.style.display = show ? '' : 'none';
+        });
+      });
+    });
+  </script>
+</body>
+</html>
