@@ -165,7 +165,29 @@
 
   <div class="page-content">
 
-    <section style="padding-top:160px; padding-bottom:40px; max-width:100%;">
+    <!-- HERO -->
+    <section class="reveal" style="
+      padding-top:160px; padding-bottom:56px; max-width:100%;
+      display:flex; align-items:center; gap:48px; flex-wrap:wrap;
+    ">
+      <div style="
+        flex:0 0 160px; width:160px; height:160px; border-radius:50%;
+        overflow:hidden; border:2px solid var(--accent-border);
+        box-shadow:0 0 40px var(--accent-glow);
+      ">
+        <img src="assets/brandon.png" alt="Brandon Tanaka Nyika, founder of WEB-WRLD" style="width:100%; height:100%; object-fit:cover;" />
+      </div>
+      <div style="flex:1; min-width:280px;">
+        <div class="section-label">Founder</div>
+        <h1 class="section-title" style="font-size:clamp(32px,5vw,52px); margin-bottom:10px;">Brandon Tanaka <span>Nyika</span></h1>
+        <p style="font-size:14px; letter-spacing:2px; text-transform:uppercase; color:var(--accent); margin-bottom:16px;">Software Engineer · Systems Architect</p>
+        <p style="font-size:15px; color:var(--text-secondary); max-width:560px; font-weight:300; line-height:1.8;">
+          Founder of WEB-WRLD, building live production systems from concept to deployment — full-stack web apps, APIs, and PWAs shipped for real users.
+        </p>
+      </div>
+    </section>
+
+    <section style="padding-top:0; padding-bottom:40px; max-width:100%;">
       <div class="section-label">Our Work</div>
       <h1 class="section-title" style="font-size:clamp(40px,6vw,70px);">Built by <span>WEB-WRLD</span></h1>
       <p style="font-size:16px; color:var(--text-secondary); max-width:520px; font-weight:300; line-height:1.8; margin-bottom:40px;">
@@ -183,6 +205,52 @@
       <!-- Portfolio Grid -->
       <div class="portfolio-grid stagger-parent" id="portfolioGrid">
 
+        <!-- Item 1: DrugPhobia AI -->
+        <div class="portfolio-item reveal" data-category="web">
+          <a href="https://drug-phobia-ai.netlify.app/" target="_blank" rel="noopener" style="display:block; color:inherit; text-decoration:none;">
+            <div class="portfolio-thumb">
+              <img src="https://picsum.photos/seed/drugphobiaai/800/600" alt="Code editor showing a chatbot application during development" loading="lazy" />
+              <div class="portfolio-thumb-label">Live System</div>
+            </div>
+            <div class="portfolio-info">
+              <div class="portfolio-tag">Web Development</div>
+              <div class="portfolio-title">DrugPhobia AI</div>
+              <div class="portfolio-desc">Multilingual harm-reduction chatbot PWA with real-time messaging. React, Node.js, Socket.IO.</div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Item 2: SkillLink -->
+        <div class="portfolio-item reveal" data-category="web">
+          <a href="https://skill-link2026.netlify.app/" target="_blank" rel="noopener" style="display:block; color:inherit; text-decoration:none;">
+            <div class="portfolio-thumb">
+              <img src="https://images.unsplash.com/photo-1667372393086-9d4001d51cf1?auto=format&fit=crop&w=800&q=80" alt="Code on monitor during service marketplace development" loading="lazy" />
+              <div class="portfolio-thumb-label">Live System</div>
+            </div>
+            <div class="portfolio-info">
+              <div class="portfolio-tag">Web Development</div>
+              <div class="portfolio-title">SkillLink</div>
+              <div class="portfolio-desc">Service marketplace platform with full auth flows. React, TypeScript, Supabase.</div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Item 3: Debate Tournament API -->
+        <div class="portfolio-item reveal" data-category="web">
+          <a href="https://debate-tournament-api-560s.onrender.com" target="_blank" rel="noopener" style="display:block; color:inherit; text-decoration:none;">
+            <div class="portfolio-thumb">
+              <img src="https://images.unsplash.com/photo-1508317469940-e3de49ba902e?auto=format&fit=crop&w=800&q=80" alt="API documentation on screen during backend development" loading="lazy" />
+              <div class="portfolio-thumb-label">Live System</div>
+            </div>
+            <div class="portfolio-info">
+              <div class="portfolio-tag">Web Development</div>
+              <div class="portfolio-title">Debate Tournament API</div>
+              <div class="portfolio-desc">Production REST API with JWT auth and Swagger docs. Node.js, Express, PostgreSQL, Prisma.</div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Item 4: Business Website -->
         <div class="portfolio-item reveal" data-category="web">
           <div class="portfolio-thumb">
             <img src="assets/portfolio-web-business-website.jpg" alt="Code on monitor during business website development" loading="lazy" />
@@ -195,6 +263,7 @@
           </div>
         </div>
 
+        <!-- Item 5: Brand Identity -->
         <div class="portfolio-item reveal" data-category="graphics">
           <div class="portfolio-thumb">
             <img src="assets/portfolio-graphics-brand-identity.jpg" alt="Design workspace with tablet and mockup screens for brand identity work" loading="lazy" />
@@ -207,6 +276,7 @@
           </div>
         </div>
 
+        <!-- Item 6: Event Flyers -->
         <div class="portfolio-item reveal" data-category="print">
           <div class="portfolio-thumb">
             <img src="assets/portfolio-print-event-flyers.jpg" alt="Poster mockup styled for flyer and event print presentation" loading="lazy" />
@@ -219,6 +289,7 @@
           </div>
         </div>
 
+        <!-- Item 7: E-Commerce Store -->
         <div class="portfolio-item reveal" data-category="web">
           <div class="portfolio-thumb">
             <img src="assets/portfolio-web-ecommerce-store.jpg" alt="Modern coding workspace for e-commerce web development" loading="lazy" />
@@ -231,6 +302,7 @@
           </div>
         </div>
 
+        <!-- Item 8: Social Media Kit -->
         <div class="portfolio-item reveal" data-category="graphics">
           <div class="portfolio-thumb">
             <img src="assets/portfolio-graphics-social-media-kit.jpg" alt="Creative workspace with tablet and colored pencils for social media design" loading="lazy" />
@@ -243,6 +315,7 @@
           </div>
         </div>
 
+        <!-- Item 9: Business Cards -->
         <div class="portfolio-item reveal" data-category="print">
           <div class="portfolio-thumb">
             <img src="assets/portfolio-print-business-cards.jpg" alt="Business card mockup arranged on a studio desk" loading="lazy" />
@@ -255,7 +328,7 @@
           </div>
         </div>
 
-      </div>
+      </div><!-- End portfolio-grid -->
 
       <!-- Add More Work Placeholder -->
       <div style="text-align:center; margin-top:60px; padding:48px; border:1px dashed var(--border-mid); border-radius:var(--radius-md);">
