@@ -33,24 +33,6 @@ WEB-WRLD/
 4. Right-click `index.html` → **Open with Live Server**
 5. Your site opens at `http://127.0.0.1:5500`
 
-## Customise Before Launch
-
-- [ ] Replace `263XXXXXXXXX` in all HTML files with your real WhatsApp number
-- [ ] Replace `hello@webwrld.co.zw` in contact.html with your real email
-- [ ] Drop your logo PNG into `assets/logo.png` and add `<img>` tags to nav
-- [ ] Add real portfolio screenshots to `assets/images/`
-- [ ] Update social media links in contact.html
-- [ ] Update stats numbers on index.html to match reality
-- [ ] Update footer year if needed
-
-## Deploy for Free
-
-### Netlify (Recommended — easiest)
-1. Go to netlify.com → sign up free
-2. Drag and drop the entire WEB-WRLD folder onto their dashboard
-3. Your site is live instantly with a free URL
-4. Buy a domain (e.g. webwrld.co.zw) and connect it in Netlify settings
-
 ### GitHub Pages
 1. Create a GitHub account
 2. git init → git add . → git commit -m "initial"
@@ -73,4 +55,4 @@ To make it actually send emails:
 - No frameworks, no build tools — just open and go
 
 ---
-Built by Brandon Nyika (WRLD) — WEB-WRLD © 2025
+Built by Brandon Nyika (WRLD) — WEB-WRLD © 2026
